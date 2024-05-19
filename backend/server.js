@@ -2,6 +2,7 @@ require("dotenv").config()
 var cors = require("cors")
 
 const express = require("express")
+const mongoose = require("mongoose")
 const metaRouter = require("./routers/metaRouter")
 
 const app = express()
@@ -17,7 +18,16 @@ app.use((req, res, next) => {
 // routers
 app.use("/api/meta", metaRouter)
 
-app.listen(process.env.PORT, () => {
-    console.log("listening on port", process.env.PORT)
-})
+// connect to db
+mongoose.connect(process.env.MONGO_CONNECTION_STRING)
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log("listening on port", process.env.PORT)
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+
 
