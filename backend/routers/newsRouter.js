@@ -1,21 +1,20 @@
-const Meta_Post = require("../models/Meta/Posts")
+const Article = require("../models/articleModel")
+const newsController = require("../controllers/newsController")
 
 const express = require("express")
 const router = express.Router()
 
-router.get("/", (req, res) => {
-    res.json({msg: "GET meta"})
-})
+router.get("/", newsController.getTopHeadlines)
 
 router.get("/:id", (req, res) => {
     res.json({msg: "GET by id meta"})
 })
 
 router.post("/", async (req, res) => {
-    const {user, content, post_date} = req.body
+    const {title, source, author, description, content, url, image_url, publish_date} = req.body
     try {
-        const post = await Meta_Post.create({user, content, post_date})
-        res.status(200).json(post)
+        const article = await Article.create({title, source, author, description, content, url, image_url, publish_date})
+        res.status(200).json(article)
     } catch (error) {
         res.status(400).json({error: error.message})
     }

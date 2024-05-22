@@ -3,7 +3,7 @@ var cors = require("cors")
 
 const express = require("express")
 const mongoose = require("mongoose")
-const metaRouter = require("./routers/metaRouter")
+const newsRouter = require("./routers/newsRouter")
 
 const app = express()
 app.use(cors());
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 })
 
 // routers
-app.use("/api/meta", metaRouter)
+app.use("/api/news", newsRouter)
 
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
