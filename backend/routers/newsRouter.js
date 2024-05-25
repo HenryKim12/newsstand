@@ -6,7 +6,7 @@ const dataController = require("../controllers/dataController")
 const express = require("express")
 const router = express.Router()
 
-router.get("/", dataController.getRecentArticles)
+router.get("/", async () => await dataController.getArticles(true))
 
 router.get("/:id", (req, res) => {
     res.json({msg: "GET by id meta"})
