@@ -6,6 +6,7 @@ const HEADLINE_URL = new URL("https://newsapi.org/v2/top-headlines")
 
 // scheduled jobs to store articles to mongodb
 const cron = require("node-cron")
+// every day at midnight
 const daily_job = cron.schedule("0 0 0 * * *", async () => {
     console.log(`Executing daily articles retrieval: ${new Date()}`)
     await getArticles(false)
@@ -13,7 +14,8 @@ const daily_job = cron.schedule("0 0 0 * * *", async () => {
 })
 daily_job.start()
 
-const weekly_job = cron.schedule("0 0 0 * * *", async () => {
+// every sunday at midnight
+const weekly_job = cron.schedule("0 0 0 * * 0", async () => { 
     console.log(`Executing weekly headline articles retrieval: ${new Date()}`)
     await getArticles(true)
     console.log("Successfully fetched headline articles!")
@@ -65,9 +67,9 @@ const getArticles = async (isHeadlineJob) => {
                 const image_url = model["urlToImage"]
                 const publish_date = model["publishedAt"]
                 if (isHeadlineJob) {
-                    const headline_row = await Headline.create({title, source, author, description, content, url, image_url, publish_date})
+                    await Headline.create({title, source, author, description, content, url, image_url, publish_date})
                 } else {
-                    const article_row = await Article.create({title, source, author, description, content, url, image_url, publish_date})
+                    await Article.create({title, source, author, description, content, url, image_url, publish_date})
                 }
             }
         })
