@@ -4,6 +4,7 @@ var cors = require("cors")
 const express = require("express")
 const mongoose = require("mongoose")
 const newsRouter = require("./routers/newsRouter")
+const cron_job = require("./controllers/dataController")
 
 const app = express()
 app.use(cors());
