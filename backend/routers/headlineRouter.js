@@ -3,20 +3,12 @@ const router = express.Router()
 
 const headlineController = require("../controllers/headlineController")
 
-router.get("/", (req, res) => {
+router.get("/", headlineController.getAllHeadlines)
+router.get("/:id", headlineController.getHeadlineById)
+router.post("/", headlineController.getHeadlineByQuery)
 
-})
-
-router.post("/", (req, res) => {
-    
-})
-
-router.delete("/", (req, res) => {
-    
-})
-
-router.patch("/", (req, res) => {
-    
-})
+// uneeded
+// router.delete("/", (req, res) => {})
+// router.patch("/", (req, res) => {})
 
 module.exports = router
