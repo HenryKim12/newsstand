@@ -1,22 +1,14 @@
 const express = require("express")
 const router = express.Router()
 
-const articleController = require("../controllers/articleController")
+const articleController = require("../controllers/articleController.js")
 
-router.get("/", (req, res) => {
+router.get("/", articleController.getAllArticles)
+router.get("/:id", articleController.getArticleById)
+router.post("/", articleController.getArticleByQuery)
 
-})
-
-router.post("/", (req, res) => {
-    
-})
-
-router.delete("/", (req, res) => {
-    
-})
-
-router.patch("/", (req, res) => {
-    
-})
+// unneeded 
+// router.delete("/:id", (req, res) => {})
+// router.patch("/", (req, res) => {})
 
 module.exports = router
