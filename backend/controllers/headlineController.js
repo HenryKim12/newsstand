@@ -12,8 +12,10 @@ const getAllHeadlines = async (req, res) => {
 }
 
 const getHeadlineById = async (req, res) => {
+    const { id } = req.params
     try {
-        // TODO
+        const headline = Headline.findById(id)
+        res.status(200).json(headline)
     } catch (error) {
         console.log(`Error: ${error.message}`)
         res.status(400).json({error: error.message})
