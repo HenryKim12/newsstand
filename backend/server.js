@@ -3,7 +3,11 @@ var cors = require("cors")
 
 const express = require("express")
 const mongoose = require("mongoose")
+
 const newsRouter = require("./routers/newsRouter")
+const articleRouter = require("./routers/articleRouter")
+const headlineRouter = require("./routers/headlineRouter")
+
 const cron_job = require("./controllers/dataController")
 
 const app = express()
@@ -18,6 +22,8 @@ app.use((req, res, next) => {
 
 // routers
 app.use("/api/news", newsRouter)
+app.use("/api/article", articleRouter)
+app.use("/api/headline", headlineRouter)
 
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
