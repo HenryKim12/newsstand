@@ -8,7 +8,7 @@ const newsRouter = require("./routers/newsRouter")
 const articleRouter = require("./routers/articleRouter")
 const headlineRouter = require("./routers/headlineRouter")
 
-const cron_job = require("./controllers/dataController")
+//const cron_job = require("./controllers/dataController")
 
 const app = express()
 app.use(cors());
@@ -22,8 +22,8 @@ app.use((req, res, next) => {
 
 // routers
 app.use("/api/news", newsRouter)
-app.use("/api/article", articleRouter)
-app.use("/api/headline", headlineRouter)
+app.use("/api/articles", articleRouter)
+app.use("/api/headlines", headlineRouter)
 
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
@@ -36,5 +36,4 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING)
         console.log(error)
     })
 
-
-
+module.exports = app
