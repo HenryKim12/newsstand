@@ -26,7 +26,7 @@ app.use("/api/articles", articleRouter)
 app.use("/api/headlines", headlineRouter)
 
 // connect to db
-mongoose.connect(process.env.MONGO_CONNECTION_STRING)
+mongoose.connect(process.env.MONGO_CONNECTION_STRING, {dbName: process.env.MONGO_DATABASE_NAME})
     .then(() => {
         // do not explicitly listen on PORT when running tests, or else PORT collision error
         if (process.env.ENV !== "tst") {
