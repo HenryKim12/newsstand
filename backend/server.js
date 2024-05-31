@@ -28,9 +28,15 @@ app.use("/api/headlines", headlineRouter)
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
     .then(() => {
-        app.listen(process.env.PORT, () => {
-            console.log("listening on port", process.env.PORT)
-        })
+        // do not explicitly listen on PORT when running tests, or else PORT collision error
+        if (process.env.ENV !== "tst") {
+            app.listen(process.env.PORT, () => {
+                console.log("Connected to MONGODB & listening on port", process.env.PORT)
+            })
+        }
+        // app.listen(process.env.PORT, () => {
+        //     console.log("listening on port", process.env.PORT)
+        // })
     })
     .catch((error) => {
         console.log(error)

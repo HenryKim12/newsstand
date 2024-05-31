@@ -22,28 +22,21 @@ const getArticleById = async (req, res) => {
     }
 }
 
-// TODO: find what users can query and possible values that can be provided for querying
 const getArticleByQuery = async (req, res) => {
     let body = {}
-    if (res.body.query) {
-        body["q"] = res.body.query
-    }
-    if (res.body.source) {
-        body["source"] = res.body.source
-    }
-    if (res.body.from) {
-        body["from"] = res.body.from
-    }
-    if (res.body.to) {
-        body["to"] = res.body.to
+    if (req.body.q) {
+        body["q"] = req.body.q
     }
     try {
-        let query = {}
-        for (const [key, value] of body.entries()) {
-            query[key] = value
-        }
-        console.log(query)
-        let article = await Article.find(query)
+        const article = await Article.find({
+            $or: [
+                {title: {$regex : body["q"]}}, 
+                {source: {$regex : body["q"]}},
+                {author: {$regex: body["q"]}},
+                {description: {$regex: body["q"]}}
+            ]
+        })
+        res.status(200).json(article)
     } catch (error) {
         console.log(`Error: ${error.message}`)
         res.status(400).json({error: error.message})

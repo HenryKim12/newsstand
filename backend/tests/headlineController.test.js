@@ -15,7 +15,22 @@ afterEach(async () => {
 });
 
 describe("GET /api/headlines", () => {
-    test("test", () => {
-        
+    test("Get all headlines", async () => {
+        const res = await request(app).get("/api/headlines")
+        expect(res.statusCode).toBe(200)
+    })
+
+    test("Get headline by id", async () => {
+        const res = await request(app).get("/api/headlines/66524e01ec4c78a16ecbe1b9")
+        expect(res.statusCode).toBe(200)
+        expect(res.body.author).toBe("NDTV Sports Desk")
+    })
+})
+
+describe("POST /api/headlines", () => {
+    test("Get headline by keyword q", async () => {
+        const res = await request(app).post("/api/headlines").send({q: "Pope"})
+        expect(res.statusCode).toBe(200)
+        //expect(res.body.author).toBe("Kim Bellware")
     })
 })
