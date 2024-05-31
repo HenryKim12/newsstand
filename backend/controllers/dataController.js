@@ -6,21 +6,23 @@ const HEADLINE_URL = new URL("https://newsapi.org/v2/top-headlines")
 
 // scheduled jobs to store articles to mongodb
 const cron = require("node-cron")
-// every day at midnight
-const daily_job = cron.schedule("0 0 0 * * *", async () => {
-    console.log(`Executing daily articles retrieval: ${new Date()}`)
+// every day at midnight (0 0 0 * * *)
+const daily_job = cron.schedule("0 * * * * *", async () => {         // 0 * * * * *
+    console.log(`Executing daily news retrieval: ${new Date()}`)
     await getArticles(false)
-    console.log("Successfully fetched daily articles!")
+    console.log("Successfully fetched articles!")
+    await getArticles(true)
+    console.log("Successfully fetched headlines!")
 })
 daily_job.start()
 
 // every sunday at midnight
-const weekly_job = cron.schedule("0 0 0 * * 0", async () => { 
-    console.log(`Executing weekly headline articles retrieval: ${new Date()}`)
-    await getArticles(true)
-    console.log("Successfully fetched headline articles!")
-})
-weekly_job.start()
+// const weekly_job = cron.schedule("0 0 0 * * 0", async () => {        // 0 * * * * * (next date to run )
+//     console.log(`Executing weekly headline articles retrieval: ${new Date()}`)
+//     await getArticles(true)
+//     console.log("Successfully fetched headline articles!")
+// })
+// weekly_job.start()
 
 const getArticles = async (isHeadlineJob) => {
     try {
@@ -42,6 +44,7 @@ const getArticles = async (isHeadlineJob) => {
         const data = await response.json()
         const articles = data["articles"]
         const targets = ["title", "source", "author", "description", "content", "url", "urlToImage", "publishedAt"]
+        const mostRecentHeadline = await getMostRecentHeadline()
         articles.forEach(async (article) => {
             let model = {}
             let invalid = false
@@ -66,13 +69,21 @@ const getArticles = async (isHeadlineJob) => {
                 const url = model["url"]
                 const image_url = model["urlToImage"]
                 const publish_date = model["publishedAt"]
-                if (isHeadlineJob) {
+                if (isHeadlineJob && mostRecentHeadline["publish_date"] < publish_date) {
                     await Headline.create({title, source, author, description, content, url, image_url, publish_date})
                 } else {
-                    await Article.create({title, source, author, description, content, url, image_url, publish_date})
+                    //await Article.create({title, source, author, description, content, url, image_url, publish_date})
                 }
             }
         })
+    } catch (error) {
+        console.log(`Error: ${error.message}`)
+    }
+}
+
+const getMostRecentHeadline = async() => {
+    try {
+        return await Headline.find().sort({publish_date: -1}).limit(1)
     } catch (error) {
         console.log(`Error: ${error.message}`)
     }
