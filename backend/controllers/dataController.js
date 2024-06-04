@@ -30,6 +30,7 @@ const getArticles = async (isHeadlineJob) => {
         if (isHeadlineJob) {
             url = HEADLINE_URL
             url.searchParams.append("language", "en")
+            url.searchParams.append("pageSize", 100)
         }
         else {
             url = EVERYTHING_URL
@@ -69,10 +70,13 @@ const getArticles = async (isHeadlineJob) => {
                 const url = model["url"]
                 const image_url = model["urlToImage"]
                 const publish_date = model["publishedAt"]
-                if (isHeadlineJob && mostRecentHeadline["publish_date"] < publish_date) {
-                    await Headline.create({title, source, author, description, content, url, image_url, publish_date})
+                if (isHeadlineJob) {
+                    const lts_publish_date = mostRecentHeadline[0]["publish_date"]
+                    if (lts_publish_date < new Date(publish_date)) {
+                        await Headline.create({title, source, author, description, content, url, image_url, publish_date})
+                    }
                 } else {
-                    //await Article.create({title, source, author, description, content, url, image_url, publish_date})
+                    await Article.create({title, source, author, description, content, url, image_url, publish_date})
                 }
             }
         })
