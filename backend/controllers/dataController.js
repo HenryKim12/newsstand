@@ -16,14 +16,6 @@ const daily_job = cron.schedule("0 0 0 * * *", async () => {         // 0 * * * 
 })
 daily_job.start()
 
-// every sunday at midnight
-// const weekly_job = cron.schedule("0 0 0 * * 0", async () => {        // 0 * * * * * (next date to run )
-//     console.log(`Executing weekly headline articles retrieval: ${new Date()}`)
-//     await getArticles(true)
-//     console.log("Successfully fetched headline articles!")
-// })
-// weekly_job.start()
-
 const getArticles = async (isHeadlineJob) => {
     try {
         let url
