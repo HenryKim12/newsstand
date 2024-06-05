@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const newsRouter = require("./routers/newsRouter")
 const articleRouter = require("./routers/articleRouter")
 const headlineRouter = require("./routers/headlineRouter")
-
+const authRouter = require("./routers/authRouter")
 //const cron_job = require("./controllers/dataController")
 
 const app = express()
@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 app.use("/api/news", newsRouter)
 app.use("/api/articles", articleRouter)
 app.use("/api/headlines", headlineRouter)
+app.use("/api", authRouter)
 
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {dbName: process.env.MONGO_DATABASE_NAME})
