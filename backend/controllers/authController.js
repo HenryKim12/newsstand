@@ -24,6 +24,7 @@ const createUser = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
+      articles: []
     });
     const user = await newUser.save();
     const token = createSecretToken(user._id);

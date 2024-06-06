@@ -8,7 +8,7 @@ const userSchema = new Schema({
     username: {type: String},
     email: {type: String},
     password: {type: String},
-    articles: [Article.schema]
+    saved_articles: [Article.schema]
 })
 
 module.exports = mongoose.model("User", userSchema);
