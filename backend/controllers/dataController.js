@@ -7,7 +7,7 @@ const HEADLINE_URL = new URL("https://newsapi.org/v2/top-headlines")
 // scheduled jobs to store articles to mongodb
 const cron = require("node-cron")
 // every day at midnight (0 0 0 * * *)
-const daily_job = cron.schedule("0 0 0 * * *", async () => {         // 0 * * * * *
+const daily_job = cron.schedule("0 0 0 * * *", async () => {         // per min: 0 * * * * *
     console.log(`Executing daily news retrieval: ${new Date()}`)
     await getArticles(false)
     console.log("Successfully fetched articles!")
