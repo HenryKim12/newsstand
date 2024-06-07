@@ -1,0 +1,28 @@
+.main-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5rem;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* .names-container {
+    display: flex;
+    gap: 10px;
+}
+
+.creds-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+} */
+
+.to-register {
+    display: flex;
+    gap: 5px;
+}
