@@ -25,17 +25,15 @@ function Register() {
           </Form.Group>
         </Row>
 
-        {/* <div className='creds-container'> */}
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" />
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" />
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="6+ characters" />
-          </Form.Group>
-        {/* </div> */}
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="6+ characters" />
+        </Form.Group>
       </Form>
       <Button variant="primary" type="submit">
           Create account
