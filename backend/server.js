@@ -3,15 +3,15 @@ var cors = require("cors")
 
 const express = require("express")
 const mongoose = require("mongoose")
+const jwt = require("jsonwebtoken")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 
-const newsRouter = require("./routers/newsRouter")
 const articleRouter = require("./routers/articleRouter")
 const headlineRouter = require("./routers/headlineRouter")
 const authRouter = require("./routers/authRouter")
 const userRouter = require("./routers/userRouter")
-//const cron_job = require("./controllers/dataController")
+//const cron_job = require("./services/newsService")
 
 const app = express()
 app.use(cors());
@@ -27,8 +27,18 @@ app.use((req, res, next) => {
     next()
 })
 
+const authenticateToken = (req, res, next) => {
+    const token = req.cookies.accessToken;
+    if (!token) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    })
+}
+
 // routers
-app.use("/api/news", newsRouter)
 app.use("/api/articles", articleRouter)
 app.use("/api/headlines", headlineRouter)
 app.use("/api", authRouter)

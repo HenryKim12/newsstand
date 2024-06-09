@@ -12,6 +12,8 @@ const createUser = async (req, res) => {
       res.status(400).send("All input is required");
     }
 
+    // TODO: ensure password is strong (6+ characters, symbols, numbers)
+
     const oldUser = await User.findOne({ email: req.body.email });
     if (oldUser) {
       return res.status(409).send("User Already Exist. Please Login");
