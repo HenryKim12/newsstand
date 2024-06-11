@@ -9,9 +9,16 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    border: 1px solid black;
+    padding: 3rem;
+    border-radius: 5%;
 }
 
 .to-login {
     display: flex;
     gap: 5px;
+}
+
+.create-button {
+    margin-top: 1rem;
 }

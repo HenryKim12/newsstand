@@ -47,33 +47,32 @@ function Register() {
 
   return (
     <div className='main-container'> 
-      
       <h2>Sign up to Newsstand</h2>
       {showPopup && <Popup handlePopup={handlePopup} message={errorMessage} />}
       <Form className='form-container' onSubmit={registerUser}>
         <Row>
           <Form.Group as={Col} className="mb-3" controlId="formName">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="name" onChange={handleChange} />
+            <Form.Control type="name" onChange={handleChange} size='lg'/>
           </Form.Group>
 
           <Form.Group as={Col} className="mb-3" controlId="formUsername">
             <Form.Label>Username</Form.Label>
-            <Form.Control type="username" onChange={handleChange} />
+            <Form.Control type="username" onChange={handleChange} size='lg'/>
           </Form.Group>
         </Row>
 
         <Form.Group className="mb-3" controlId="formEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" onChange={handleChange} />
+          <Form.Control type="email" onChange={handleChange} size='lg'/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="6+ characters" onChange={handleChange}/>
+          <Form.Control type="password" placeholder="6+ characters" onChange={handleChange} size='lg'/>
         </Form.Group>
 
-        <Button variant="dark" type="submit">
+        <Button variant="dark" type="submit" className='create-button'>
           Create account
         </Button>
       </Form>

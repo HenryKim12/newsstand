@@ -17,7 +17,7 @@
     border-radius: 5%;
 }
 
-.form-container {
+.login-form-container {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -27,7 +27,6 @@
 .to-register {
     display: flex;
     gap: 5px;
-    margin-top: 2rem;
 }
 
 html, body {
