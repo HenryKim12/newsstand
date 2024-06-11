@@ -29,6 +29,10 @@
     gap: 5px;
 }
 
+.login-button {
+    margin-top: 1rem;
+}
+
 html, body {
     overflow: hidden;
 }

@@ -26,7 +26,10 @@ function Register() {
   const registerUser = async (e) => {
     try {
       e.preventDefault();
-      await apiClient.post("/api/signup", formData)
+      const res = await apiClient.post("/api/signup", formData)
+      if (res.status == 200) {
+        navigate("/login")
+      }
     } catch (error) {
       console.log(error)
       setErrorMessage(error.response.data)
