@@ -4,8 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from "react-router-dom"
 
 function NavigationBar() {
+    const navigate = useNavigate()
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -18,14 +21,14 @@ function NavigationBar() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">News</Nav.Link>
-            <Nav.Link href="#action2">Sport</Nav.Link>
-            <Nav.Link href="#action3">Travel</Nav.Link>
-            <Nav.Link href="#action4">Fashion</Nav.Link>
-            <Nav.Link href="#action5">Food</Nav.Link>
-            <Nav.Link href="#action6">Entertainment</Nav.Link>
-            <NavDropdown title="More" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action7">???</NavDropdown.Item>
+            <Nav.Link onClick={() => navigate("/")}>News</Nav.Link>
+            <Nav.Link onClick={() => navigate("/sports")}>Sport</Nav.Link>
+            <Nav.Link onClick={() => navigate("/travel")}>Travel</Nav.Link>
+            <Nav.Link onClick={() => navigate("/fashion")}>Fashion</Nav.Link>
+            <Nav.Link onClick={() => navigate("/food")}>Food</Nav.Link>
+            <Nav.Link onClick={() => navigate("/entertainment")}>Entertainment</Nav.Link>
+            <NavDropdown title="Account" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action7">Favourites</NavDropdown.Item>
               <NavDropdown.Item href="#action8">???</NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -39,8 +42,8 @@ function NavigationBar() {
             {/* TODO: change to search icon */}
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Button variant='light'>Login</Button>
-          <Button variant='dark'>Sign Up</Button>
+          <Button variant='light' onClick={() => navigate("/login")}>Login</Button>
+          <Button variant='dark' onClick={() => navigate("/register")}>Sign Up</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
