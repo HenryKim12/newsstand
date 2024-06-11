@@ -26,7 +26,6 @@ function Register() {
   const registerUser = async (e) => {
     try {
       e.preventDefault();
-      //console.log(showPopup)
       await apiClient.post("/api/signup", formData)
     } catch (error) {
       console.log(error)
