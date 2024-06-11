@@ -6,9 +6,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
+import Popup from '../../components/Popup/Popup';
 
 function Register() {
   const navigate = useNavigate()
+  const [showPopup, setShowPopup] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "", 
     username: "",
@@ -16,13 +19,19 @@ function Register() {
     password: ""
   })
 
+  const handlePopup = (childShow) => {
+    setShowPopup(childShow)
+  }
+
   const registerUser = async (e) => {
     try {
       e.preventDefault();
-      const res = await apiClient.post("/api/signup", formData)
-      console.log(res)
+      //console.log(showPopup)
+      await apiClient.post("/api/signup", formData)
     } catch (error) {
       console.log(error)
+      setErrorMessage(error.response.data)
+      setShowPopup(true)
     }
   }
 
@@ -39,7 +48,9 @@ function Register() {
 
   return (
     <div className='main-container'> 
+      
       <h2>Sign up to Newsstand</h2>
+      {showPopup && <Popup handlePopup={handlePopup} message={errorMessage} />}
       <Form className='form-container' onSubmit={registerUser}>
         <Row>
           <Form.Group as={Col} className="mb-3" controlId="formName">
@@ -63,7 +74,7 @@ function Register() {
           <Form.Control type="password" placeholder="6+ characters" onChange={handleChange}/>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="dark" type="submit">
           Create account
         </Button>
       </Form>
