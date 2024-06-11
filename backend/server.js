@@ -11,7 +11,7 @@ const articleRouter = require("./routers/articleRouter")
 const headlineRouter = require("./routers/headlineRouter")
 const authRouter = require("./routers/authRouter")
 const userRouter = require("./routers/userRouter")
-//const cron_job = require("./services/newsService")
+const cron_job = require("./services/newsService")
 
 const app = express()
 app.use(cors());
