@@ -14,7 +14,6 @@ function Home() {
       const res = await apiClient.get("/api/headlines")
       const headlines = res.data;
       setHeadlines(headlines)
-      console.log(headlines)
     } catch (error) {
       console.log(error)
     }
@@ -24,8 +23,20 @@ function Home() {
     setHeadlineIndex(slideIndex)
   }
 
+  const fetchArticles = async () => {
+    try {
+      const res = await apiClient.get("/api/articles")
+      console.log(res)
+      const articles = res.data;
+      setArticles(articles)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    fetchHeadlines()
+    fetchHeadlines();
+    fetchArticles();
   }, [])
 
   return (
@@ -37,23 +48,32 @@ function Home() {
         {headlines.length > 0 && 
         <div className='item-2'>
           <div>
-            <p>{headlines[headlineIndex].author}</p>
-            <p>{headlines[headlineIndex].publish_date}</p>
+            <p style={{fontWeight: "bold"}}>{headlines[headlineIndex].source}: {headlines[headlineIndex].publish_date.substring(0, 10)}</p>
           </div>
           <p>{headlines[headlineIndex].description}</p>
-          <div>
+          <div style={{border: "1px solid black", width: "130px", padding: "5px"}}>
             <a href={headlines[headlineIndex].url} className='headline-link'> 
               Read More 
             </a>
             <FaLongArrowAltRight />
           </div>
-
         </div>}
 
         <div className='row-border'></div>
 
         <div className='item-3'>
-          POPULAR NEWS
+          <h5>POPULAR NEWS</h5>
+          {articles.length > 0 && 
+          <div>
+            {articles.splice(0, 8).map((article) => {
+              return (
+                <div>
+                  {article.author}
+                </div>
+              )  
+            })}
+          </div>
+          }
         </div>
     </div>
   )
