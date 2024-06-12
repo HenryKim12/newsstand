@@ -25,11 +25,12 @@ function Home() {
     <div className='grid'>
         <div className='item-1'>
             <SlideShow />
-            <button onClick={fetchHeadlines}>fetch headlines</button>
         </div>
         <div className='item-2'>
           hello
+          <button onClick={fetchHeadlines}>fetch headlines</button>
         </div>
+        <div className='row-border'></div>
 
         <div className='item-3'>
           Recent News
