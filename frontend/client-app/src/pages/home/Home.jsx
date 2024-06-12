@@ -52,7 +52,7 @@ function Home() {
           </div>
           <p>{headlines[headlineIndex].description}</p>
           <div style={{border: "1px solid black", width: "130px", padding: "5px"}}>
-            <a href={headlines[headlineIndex].url} className='headline-link'> 
+            <a href={headlines[headlineIndex].url} target='_blank' className='headline-link'> 
               Read More 
             </a>
             <FaLongArrowAltRight />
