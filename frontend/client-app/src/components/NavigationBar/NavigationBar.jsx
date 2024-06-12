@@ -14,7 +14,7 @@ function NavigationBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">Newsstand</Navbar.Brand>
+        <Navbar.Brand href="#" className="brand">Newsstand</Navbar.Brand>
         <div class="vr"></div>
         <Navbar.Collapse id="navbarScroll" className="nav-collapse">
           <Nav className="nav" style={{ maxHeight: "100px" }} navbarScroll>
