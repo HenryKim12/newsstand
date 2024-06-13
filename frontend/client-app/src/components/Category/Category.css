@@ -1,0 +1,25 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.category-topic {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.category-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; 
+}
+
+.category-item {
+    margin-bottom: 10px;
+    a {
+        color: gray;
+        text-decoration: none;
+    }
+}
