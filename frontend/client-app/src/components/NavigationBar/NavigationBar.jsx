@@ -22,7 +22,7 @@ function NavigationBar() {
               News
             </Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate("/sports")}>
-              Sport
+              Sports
             </Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate("/travel")}>
               Travel

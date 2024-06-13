@@ -3,7 +3,7 @@ import "./ArticleWithNoImage.css"
 
 function ArticleWithNoImage({article}) {
   return (
-    <div className='container'>
+    <div className='article-noimg-container'>
         <a href={article.url} target='_blank' style={{textDecoration: "none", color: "black"}}>
             <h6 style={{fontWeight: "bold"}}>{article.title}</h6>
         </a>

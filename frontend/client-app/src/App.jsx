@@ -4,6 +4,7 @@ import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
 import NavigationBar from './components/NavigationBar/NavigationBar'
+import SubPageLayout from "./layouts/SubPageLayout"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />
+        <Route path={routes.sports} element={<SubPageLayout title="SPORTS" query="sports" />} />
       </Routes>
     </BrowserRouter>
   )

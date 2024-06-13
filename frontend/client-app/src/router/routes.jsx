@@ -3,7 +3,12 @@ const routes = {
     login: "/login",
     register: "/register",
     error: "/error",
-    articles: "/articles",
+    sports: "/sports",
+    travel: "/travel",
+    fashion: "/fashion",
+    food: "/food",
+    entertainment: "/entertainment",
+    search: "/search",
     account: "/account"
 }
 
