@@ -11,6 +11,7 @@ function SubPageLayout({title, query}) {
         try {
             const res = await apiClient.post("/api/articles", {q: query});
             const articles = res.data;
+            console.log(articles)
             setArticles(articles)
         } catch (error) {
             console.log(error)
@@ -22,8 +23,8 @@ function SubPageLayout({title, query}) {
     }, [])
 
   return (
-    <div className='container'>
-        <h1>{title}</h1>
+    <div className='subpage-container'>
+        <h1 className='sp-title'>{title}</h1>
         {articles.length > 0 && 
             <div>
                 {articles.map((article, index) => {

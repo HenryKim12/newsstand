@@ -4,7 +4,11 @@ import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
 import NavigationBar from './components/NavigationBar/NavigationBar'
-import SubPageLayout from "./layouts/SubPageLayout"
+import SportsPage from "./pages/subpages/SportsPage"
+import TravelPage from "./pages/subpages/TravelPage"
+import TechnologyPage from "./pages/subpages/TechnologyPage"
+import EntertainmentPage from "./pages/subpages/EntertainmentPage"
+import HealthPage from "./pages/subpages/HealthPage"
 
 function App() {
   return (
@@ -18,7 +22,11 @@ function App() {
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />
-        <Route path={routes.sports} element={<SubPageLayout title="SPORTS" query="sports" />} />
+        <Route path={routes.sports} element={<SportsPage />} />
+        <Route path={routes.travel} element={<TravelPage />} />
+        <Route path={routes.technology} element={<TechnologyPage />} />
+        <Route path={routes.health} element={<HealthPage />} />
+        <Route path={routes.entertainment} element={<EntertainmentPage />} />
       </Routes>
     </BrowserRouter>
   )

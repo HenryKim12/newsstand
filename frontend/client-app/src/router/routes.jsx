@@ -5,8 +5,8 @@ const routes = {
     error: "/error",
     sports: "/sports",
     travel: "/travel",
-    fashion: "/fashion",
-    food: "/food",
+    technology: "/technology",
+    health: "/health",
     entertainment: "/entertainment",
     search: "/search",
     account: "/account"
