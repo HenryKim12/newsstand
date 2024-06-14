@@ -95,9 +95,9 @@
     font-weight: bold;
 }
 
-img {
+/* img {
     filter: grayscale(1) brightness(50%);
-}
+} */
 
 .item-6 {
     display: flex;
