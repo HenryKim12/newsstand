@@ -1,5 +1,5 @@
-const User = require("../models/userModel")
-const Article = require("../models/articleModel")
+const User = require("../database/models/userModel")
+const Article = require("../database/models/articleModel")
 
 const getUserArticles = async (req, res) => {
     try {

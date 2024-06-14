@@ -1,4 +1,4 @@
-const Headline = require("../models/headlineModel")
+const Headline = require("../database/models/headlineModel")
 
 const getAllHeadlines = async (req, res) => {
     try {

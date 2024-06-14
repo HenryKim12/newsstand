@@ -1,5 +1,5 @@
-const Article = require("../models/articleModel")
-const Headline = require("../models/headlineModel")
+const Article = require("../database/models/articleModel")
+const Headline = require("../database/models/headlineModel")
 
 const EVERYTHING_URL = new URL("https://newsapi.org/v2/everything")
 const HEADLINE_URL = new URL("https://newsapi.org/v2/top-headlines")

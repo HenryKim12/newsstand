@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Article = require("../models/articleModel")
+const Article = require("./articleModel")
 
 const Schema = mongoose.Schema
 
