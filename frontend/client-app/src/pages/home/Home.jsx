@@ -164,10 +164,10 @@ function Home() {
 
         <div className='categories'>
           <Category topic="Sport" list={["Soccer", "Football", "Basketball"]} />
-          <Category topic="Arts" list={["Design", "Books", "Pop Culture"]} />
+          <Category topic="Arts" list={["Design", "Books", "Culture"]} />
           <Category topic="Living" list={["Automotive", "Games", "Food"]} />
-          <Category topic="Technology" list={["Software/Apps", "AI", "Devices"]} />
-          <Category topic="Health" list={["Medical Research", "Diseases", "Mental Health"]} />
+          <Category topic="Technology" list={["Software", "AI", "Devices"]} />
+          <Category topic="Health" list={["Research", "Diseases", "Mental"]} />
         </div>
 
     </div>

@@ -25,8 +25,9 @@ function SubPageLayout({title, query}) {
   return (
     <div className='subpage-container'>
         <h1 className='sp-title'>{title}</h1>
-        {articles.length > 0 && 
+        {articles.length > 0 ? 
             <div>
+                <h6 style={{marginBottom: "2rem"}}>{articles.length} RESULTS</h6>
                 {articles.map((article, index) => {
                     return (
                         <div>
@@ -43,6 +44,10 @@ function SubPageLayout({title, query}) {
                         </div>
                     )
                 })}
+            </div>
+            :
+            <div>
+                0 RESULTS
             </div>
         }
     </div>
