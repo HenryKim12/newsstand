@@ -9,6 +9,7 @@ import TravelPage from "./pages/subpages/TravelPage"
 import TechnologyPage from "./pages/subpages/TechnologyPage"
 import EntertainmentPage from "./pages/subpages/EntertainmentPage"
 import HealthPage from "./pages/subpages/HealthPage"
+import SearchPage from "./pages/subpages/SearchPage"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path={routes.technology} element={<TechnologyPage />} />
         <Route path={routes.health} element={<HealthPage />} />
         <Route path={routes.entertainment} element={<EntertainmentPage />} />
+        <Route path={routes.search} element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
   )

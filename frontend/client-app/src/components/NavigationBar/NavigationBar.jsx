@@ -7,9 +7,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 import "./NavigationBar.css";
 import { CiSearch } from "react-icons/ci";
+import { useState } from "react";
 
 function NavigationBar() {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = e.target[0].value;
+    navigate(`/search/${query}`)
+  }
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -45,14 +53,14 @@ function NavigationBar() {
             </NavDropdown>
           </Nav>
           <div className="search-buttons">
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={handleSearch}>
               <Form.Control
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="light">
+              <Button variant="light" type="submit">
                 <CiSearch />
               </Button>
             </Form>

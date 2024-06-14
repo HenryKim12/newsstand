@@ -11,7 +11,7 @@ function SubPageLayout({title, query}) {
         try {
             const res = await apiClient.post("/api/articles", {q: query});
             const articles = res.data;
-            console.log(articles)
+            console.log("Query for " + {query} + ": " + articles)
             setArticles(articles)
         } catch (error) {
             console.log(error)

@@ -8,7 +8,7 @@ const routes = {
     technology: "/technology",
     health: "/health",
     entertainment: "/entertainment",
-    search: "/search",
+    search: "/search/:searchQuery",
     account: "/account"
 }
 
