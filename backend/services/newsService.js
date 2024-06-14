@@ -68,7 +68,10 @@ const getArticles = async (isHeadlineJob) => {
                         await Headline.create({title, source, author, description, content, url, image_url, publish_date})
                     }
                 } else {
-                    await Article.create({title, source, author, description, content, url, image_url, publish_date})
+                    const existingArticle = Article.find({title: title})
+                    if (!existingArticle) {
+                        await Article.create({title, source, author, description, content, url, image_url, publish_date})
+                    }
                 }
             }
         })

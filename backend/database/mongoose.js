@@ -1,4 +1,5 @@
-
+const Article = require("./models/articleModel")
+const Headline = require("./models/headlineModel")
 
 const removeDuplicates = async () => {
     try {
@@ -17,6 +18,7 @@ const removeDuplicates = async () => {
                 }
             }
         ]
+
     } catch (error) {
         console.log(error)
     }
