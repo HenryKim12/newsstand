@@ -33,7 +33,6 @@ function Home() {
   const fetchArticles = async () => {
     try {
       const res = await apiClient.get("/api/articles")
-      console.log(res)
       const articles = res.data;
       setArticles(articles)
     } catch (error) {

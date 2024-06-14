@@ -13,10 +13,13 @@ function NavigationBar() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value)
+  }
+
   const handleSearch = (e) => {
-    e.preventDefault();
-    const query = e.target[0].value;
-    navigate(`/search/${query}`)
+    navigate(`/search/${searchQuery}`)
+    setSearchQuery("");
   }
 
   return (
@@ -49,7 +52,6 @@ function NavigationBar() {
             </Nav.Link>
             <NavDropdown title="Account" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action7">Favourites</NavDropdown.Item>
-              <NavDropdown.Item href="#action8">???</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <div className="search-buttons">
@@ -59,6 +61,8 @@ function NavigationBar() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                value={searchQuery}
+                onChange={handleChange}
               />
               <Button variant="light" type="submit">
                 <CiSearch />
