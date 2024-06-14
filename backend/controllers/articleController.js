@@ -30,10 +30,18 @@ const getArticleByQuery = async (req, res) => {
     try {
         const article = await Article.find({
             $or: [
-                {title: {$regex : body["q"]}}, 
-                {source: {$regex : body["q"]}},
-                {author: {$regex: body["q"]}},
-                {description: {$regex: body["q"]}}
+                {$or: [
+                    {title: {$regex : body["q"].toLowerCase()}}, 
+                    {source: {$regex : body["q"].toLowerCase()}},
+                    {author: {$regex: body["q"].toLowerCase()}},
+                    {description: {$regex: body["q"].toLowerCase()}}
+                ]},
+                {$or: [
+                    {title: {$regex : body["q"].charAt(0).toUpperCase() + body["q"].slice(1)}}, 
+                    {source: {$regex : body["q"].charAt(0).toUpperCase() + body["q"].slice(1)}},
+                    {author: {$regex: body["q"].charAt(0).toUpperCase() + body["q"].slice(1)}},
+                    {description: {$regex: body["q"].charAt(0).toUpperCase() + body["q"].slice(1)}}
+                ]}
             ]
         })
         res.status(200).json(article)
