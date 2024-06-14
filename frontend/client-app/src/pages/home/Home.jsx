@@ -147,7 +147,7 @@ function Home() {
                   <h6 className='bolded-title' style={{marginBottom: "2rem"}}>{articles[9].title}</h6>
                   <ReadMoreButton url={articles[9].url} />
                 </div>
-                <img src={articles[9].image_url} width={"100"} height={100} style={{borderRadius: "50%"}} />
+                <img src={articles[9].image_url} style={{borderRadius: "50%", height: "100px", maxWidth: "100%"}} />
               </div>
             </div>
             }
