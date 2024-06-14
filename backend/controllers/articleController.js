@@ -2,7 +2,7 @@ const Article = require("../database/models/articleModel")
 
 const getAllArticles = async (req, res) => {
     try {
-        const articles = await Article.find()
+        const articles = await Article.find().sort({publish_date: -1})
         let articleArray = articles.map(article => article.toObject())
         res.status(200).json(articleArray)
     } catch (error) {        

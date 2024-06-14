@@ -2,7 +2,7 @@ const Headline = require("../database/models/headlineModel")
 
 const getAllHeadlines = async (req, res) => {
     try {
-        const headlines = await Headline.find()
+        const headlines = await Headline.find().sort({publish_date: -1})
         const headlineArray = headlines.map(headline => headline.toObject())
         res.status(200).json(headlineArray)
     } catch (error) {
