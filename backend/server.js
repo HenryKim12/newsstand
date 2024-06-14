@@ -12,9 +12,16 @@ const headlineRouter = require("./routers/headlineRouter")
 const authRouter = require("./routers/authRouter")
 const userRouter = require("./routers/userRouter")
 const cron_job = require("./services/newsService")
+const mongoHelper = require("./database/mongoose.js")
 
 const app = express()
 app.use(cors());
+
+// remove duplicates in db
+// app.get('/removeDuplicates', async (req, res) => {
+//     await mongoHelper.removeDuplicates();
+//     res.send("Dupicates removed");
+//   });
 
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
