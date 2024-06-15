@@ -9,7 +9,7 @@ const routes = {
     health: "/health",
     entertainment: "/entertainment",
     search: "/search/:searchQuery",
-    account: "/account"
+    accountFavourites: "/account/favourites"
 }
 
 export default routes

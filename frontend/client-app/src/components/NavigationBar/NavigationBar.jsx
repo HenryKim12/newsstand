@@ -51,7 +51,7 @@ function NavigationBar() {
               Entertainment
             </Nav.Link>
             <NavDropdown title="Account" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action7">Favourites</NavDropdown.Item>
+              <NavDropdown.Item href="#action7" onClick={() => navigate("/account/favourites")}>Favourites</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <div className="search-buttons">

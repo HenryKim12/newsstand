@@ -8,11 +8,13 @@ import ArticleWithNoImage from '../../components/ArticleWithNoImage/ArticleWithN
 import ReadMoreButton from '../../components/ReadMoreButton/ReadMoreButton';
 import Button from "react-bootstrap/Button"
 import Category from '../../components/Category/Category'
+import LoadingIndicator from '../../components/LoadingIndicator/LoadingIndicator'
 
 function Home() {
   const [headlines, setHeadlines] = useState([])
   const [articles, setArticles] = useState([])
   const [headlineIndex, setHeadlineIndex] = useState(0)
+  const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate();
 
@@ -21,6 +23,7 @@ function Home() {
       const res = await apiClient.get("/api/headlines")
       const headlines = res.data;
       setHeadlines(headlines)
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -35,6 +38,7 @@ function Home() {
       const res = await apiClient.get("/api/articles")
       const articles = res.data;
       setArticles(articles)
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -44,6 +48,12 @@ function Home() {
     fetchHeadlines();
     fetchArticles();
   }, [])
+
+  if (loading) {
+    return (
+      <LoadingIndicator />
+    )
+  }
 
   return (
     <div className='grid'>
