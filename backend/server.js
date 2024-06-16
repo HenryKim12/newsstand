@@ -18,10 +18,10 @@ const app = express()
 app.use(cors());
 
 // remove duplicates in db
-// app.get('/removeDuplicates', async (req, res) => {
-//     await mongoHelper.removeDuplicates();
-//     res.send("Dupicates removed");
-//   });
+app.get('/removeDuplicates', async (req, res) => {
+    await mongoHelper.removeDuplicates();
+    res.send("Dupicates removed");
+  });
 
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
