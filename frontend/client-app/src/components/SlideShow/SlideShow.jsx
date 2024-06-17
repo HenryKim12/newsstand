@@ -21,7 +21,7 @@ function SlideShow({headlines, fetchHeadlineIndex}) {
                 alt="First slide"
               />
               <Carousel.Caption >
-                <h3 className='carousel-caption'>{headline.title.substring(0, headline.title.indexOf('-', headline.title.length - 50))}</h3>
+                <h5 className='carousel-caption'>{headline.title.substring(0, headline.title.indexOf('-', headline.title.length - 50))}</h5>
               </Carousel.Caption>
             </Carousel.Item>
           )
