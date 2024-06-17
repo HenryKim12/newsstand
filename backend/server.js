@@ -16,7 +16,13 @@ const mongoHelper = require("./database/mongoose.js")
 const authenticateToken = require("./jwt/authenticateToken.js")
 
 const app = express()
-app.use(cors());
+const corsOptions ={
+    origin:'http://localhost:5173', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // remove duplicates in db
 app.get('/removeDuplicates', async (req, res) => {
@@ -32,7 +38,6 @@ app.use(cookieParser());
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
-    authenticateToken(req, res, next);
     next()
 })
 
@@ -40,7 +45,11 @@ app.use((req, res, next) => {
 app.use("/api/articles", articleRouter)
 app.use("/api/headlines", headlineRouter)
 app.use("/api", authRouter)
-app.use("/api/user", userRouter)
+app.use("/api/user", authenticateToken, userRouter)
+
+app.use("/api/protected", authenticateToken, (req, res) => {
+    res.send("This is a protected route")
+})
 
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {dbName: process.env.MONGO_DATABASE_NAME})

@@ -19,6 +19,7 @@ function Login() {
     try {
       e.preventDefault();
       const res = await apiClient.post("/api/login", formData)
+      console.log(res)
       if (res.status == 200) {
         navigate("/")
       }

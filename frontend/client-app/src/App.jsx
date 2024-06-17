@@ -11,6 +11,7 @@ import EntertainmentPage from "./pages/subpages/EntertainmentPage"
 import HealthPage from "./pages/subpages/HealthPage"
 import SearchPage from "./pages/subpages/SearchPage"
 import FavouritesPage from "./pages/subpages/account/FavouritesPage"
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path={routes.entertainment} element={<EntertainmentPage />} />
         <Route path={routes.search} element={<SearchPage />} />
         <Route path={routes.accountFavourites} element={<FavouritesPage />} />
+        <Route path="/protected" element={<ProtectedRoute />} />
       </Routes>
     </BrowserRouter>
   )
