@@ -11,7 +11,7 @@ function Category({topic, list}) {
         <ul className='category-list'>
             {list.map((item) => {
                 return (
-                    <li className='category-item'>
+                    <li className='category-item' key={item}>
                         <a href="" onClick={() => navigate(`/search/${item.toLowerCase()}`)}>{item}</a>
                     </li>
                 )

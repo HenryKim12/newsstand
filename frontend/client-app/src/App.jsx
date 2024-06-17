@@ -21,14 +21,13 @@ function App() {
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />
-        <Route path={routes.sports} element={<SportsPage />} />
-        <Route path={routes.travel} element={<TravelPage />} />
-        <Route path={routes.technology} element={<TechnologyPage />} />
-        <Route path={routes.health} element={<HealthPage />} />
-        <Route path={routes.entertainment} element={<EntertainmentPage />} />
-        <Route path={routes.search} element={<SearchPage />} />
-        <Route path={routes.accountFavourites} element={<FavouritesPage />} />
-        <Route path="/protected" element={<ProtectedRoute />} />
+        <Route path={routes.sports} element={<ProtectedRoute> <SportsPage /> </ProtectedRoute>} />
+        <Route path={routes.travel} element={<ProtectedRoute> <TravelPage /> </ProtectedRoute>} />
+        <Route path={routes.technology} element={<ProtectedRoute> <TechnologyPage /> </ProtectedRoute>} />
+        <Route path={routes.health} element={<ProtectedRoute> <HealthPage /> </ProtectedRoute>} />
+        <Route path={routes.entertainment} element={<ProtectedRoute> <EntertainmentPage /> </ProtectedRoute>} />
+        <Route path={routes.search} element={<ProtectedRoute> <SearchPage /> </ProtectedRoute>} />
+        <Route path={routes.accountFavourites} element={<ProtectedRoute> <FavouritesPage /> </ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   )

@@ -7,11 +7,14 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 import "./NavigationBar.css";
 import { CiSearch } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie"
 
 function NavigationBar() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  //const [cookies, setCookies] = useState(null);
+  const [isCookieSet, setIsCookieSet] = useState(Cookies.get("cookieConsent"));
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value)
@@ -21,6 +24,22 @@ function NavigationBar() {
     navigate(`/search/${searchQuery}`)
     setSearchQuery("");
   }
+
+  // TODO: conditionally render accounts tab in navbar and login/logout based on cookie token 
+  const checkCookies = () => {
+    const cookie = Cookies.get()
+    if (cookie) {
+      Cookies.set("cookieConsent", true);
+      setIsCookieSet(true)
+    } else {
+      Cookies.set("cookieConsent", false)
+      setIsCookieSet(false)
+    }
+  }
+
+  useEffect(() => {
+    checkCookies();
+  })
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -50,9 +69,10 @@ function NavigationBar() {
             >
               Entertainment
             </Nav.Link>
+            {isCookieSet != null && 
             <NavDropdown title="Account" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action7" onClick={() => navigate("/account/favourites")}>Favourites</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown>}
           </Nav>
           <div className="search-buttons">
             <Form className="d-flex" onSubmit={handleSearch}>
