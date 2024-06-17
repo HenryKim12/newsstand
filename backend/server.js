@@ -13,6 +13,7 @@ const authRouter = require("./routers/authRouter")
 const userRouter = require("./routers/userRouter")
 const cron_job = require("./services/newsService")
 const mongoHelper = require("./database/mongoose.js")
+const authenticateToken = require("./jwt/authenticateToken.js")
 
 const app = express()
 app.use(cors());
@@ -31,19 +32,9 @@ app.use(cookieParser());
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
+    authenticateToken(req, res, next);
     next()
 })
-
-const authenticateToken = (req, res, next) => {
-    const token = req.cookies.accessToken;
-    if (!token) return res.sendStatus(401);
-
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.user = user;
-        next();
-    })
-}
 
 // routers
 app.use("/api/articles", articleRouter)
