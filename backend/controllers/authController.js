@@ -57,7 +57,7 @@ const login = async (req, res) => {
     }
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      //domain: "/", // Set your domain here                  // TODO: required on deploy?? 
+      domain: process.env.DOMAIN, // Set your domain here  // TODO: change domain in .env to match deployed domain (aws)
       path: "/", // Cookie is accessible from all paths
       expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
       secure: true, // Cookie will only be sent over HTTPS
