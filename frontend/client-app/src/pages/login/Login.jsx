@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
 import Popup from '../../components/Popup/Popup';
+import Cookies from "js-cookie"
 
 function Login() {
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ function Login() {
     try {
       e.preventDefault();
       const res = await apiClient.post("/api/login", formData)
-      console.log(res)
       if (res.status == 200) {
+        Cookies.set("isCookieSet", true)
         navigate("/")
+        // re-render home page to load account + logout button
+        navigate(0)
       }
     } catch (error) {
       console.log(error)

@@ -12,6 +12,7 @@ import HealthPage from "./pages/subpages/HealthPage"
 import SearchPage from "./pages/subpages/SearchPage"
 import FavouritesPage from "./pages/subpages/account/FavouritesPage"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
+import Logout from "./pages/logout/Logout"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.register} element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path={routes.sports} element={<ProtectedRoute> <SportsPage /> </ProtectedRoute>} />
         <Route path={routes.travel} element={<ProtectedRoute> <TravelPage /> </ProtectedRoute>} />
         <Route path={routes.technology} element={<ProtectedRoute> <TechnologyPage /> </ProtectedRoute>} />

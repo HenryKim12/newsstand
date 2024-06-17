@@ -9,12 +9,12 @@ import "./NavigationBar.css";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie"
+import apiClient from "../../api/apiClient";
 
 function NavigationBar() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  //const [cookies, setCookies] = useState(null);
-  const [isCookieSet, setIsCookieSet] = useState(Cookies.get("cookieConsent"));
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value)
@@ -25,21 +25,31 @@ function NavigationBar() {
     setSearchQuery("");
   }
 
-  // TODO: conditionally render accounts tab in navbar and login/logout based on cookie token 
   const checkCookies = () => {
-    const cookie = Cookies.get()
-    if (cookie) {
-      Cookies.set("cookieConsent", true);
-      setIsCookieSet(true)
+    const cookie = Cookies.get("isCookieSet")
+    console.log(cookie)
+    if (cookie == "true") {
+      setIsLoggedIn(true)
     } else {
-      Cookies.set("cookieConsent", false)
-      setIsCookieSet(false)
+      setIsLoggedIn(false)
     }
+  }
+
+  const handleLogout = async () => {
+    try {
+      const response = await apiClient.get("/api/logout");
+      console.log(response)
+      Cookies.set("isCookieSet", false)
+      checkCookies()
+      navigate(0)
+    } catch (error) {
+      console.log(error)
+    }    
   }
 
   useEffect(() => {
     checkCookies();
-  })
+  }, [])
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -69,7 +79,7 @@ function NavigationBar() {
             >
               Entertainment
             </Nav.Link>
-            {isCookieSet != null && 
+            {isLoggedIn && 
             <NavDropdown title="Account" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action7" onClick={() => navigate("/account/favourites")}>Favourites</NavDropdown.Item>
             </NavDropdown>}
@@ -89,9 +99,15 @@ function NavigationBar() {
               </Button>
             </Form>
             <div className="user-buttons">
+              {!isLoggedIn ? 
               <Button variant="light" onClick={() => navigate("/login")}>
                 Login
               </Button>
+              :
+              <Button variant="light" onClick={() => handleLogout()}>
+                Logout
+              </Button>
+              }
               <Button variant="dark" onClick={() => navigate("/register")}>
                 Sign Up
               </Button>
