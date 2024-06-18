@@ -1,4 +1,5 @@
 const User = require("../database/models/userModel");
+const mailService = require("../services/mailService")
 
 const { createSecretToken } = require("../jwt/generateToken");
 const bcrypt = require("bcrypt");
@@ -39,6 +40,9 @@ const createUser = async (req, res) => {
       sameSite: "None",
     });
     console.log("cookie set succesfully");
+
+    // send email 
+    await mailService.sendEmail(req.body.email)
 
     res.json(user);
   } catch (error) {

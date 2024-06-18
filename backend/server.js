@@ -14,6 +14,7 @@ const userRouter = require("./routers/userRouter")
 const cron_job = require("./services/newsService")
 const mongoHelper = require("./database/mongoose.js")
 const authenticateToken = require("./jwt/authenticateToken.js")
+const mailService = require("./services/mailService.js")
 
 const app = express()
 const corsOptions ={
@@ -24,12 +25,6 @@ const corsOptions ={
 //app.use(cors(corsOptions));
 app.use(cors(corsOptions));
 
-// remove duplicates in db
-app.get('/removeDuplicates', async (req, res) => {
-    await mongoHelper.removeDuplicates();
-    res.send("Dupicates removed");
-  });
-
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -39,6 +34,22 @@ app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
+})
+
+// test / one-time scripts
+app.get('/removeDuplicates', async (req, res) => {
+    await mongoHelper.removeDuplicates();
+    res.send("Dupicates removed");
+  });
+
+app.post("/send-mail", async (req, res) => {
+    try {
+        const {to} = req.body;
+        await mailService.sendEmail(to)
+        res.status(200).json({ message: 'Email sent successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to send email', error });
+    }
 })
 
 // routers
