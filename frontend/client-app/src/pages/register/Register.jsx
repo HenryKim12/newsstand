@@ -51,7 +51,7 @@ function Register() {
   return (
     <div className='main-container'> 
       <h2>Sign up to Newsstand</h2>
-      {showPopup && <Popup handlePopup={handlePopup} message={errorMessage} />}
+      {showPopup && <Popup handlePopup={handlePopup} title="Try again" message={errorMessage} />}
       <Form className='form-container' onSubmit={registerUser}>
         <Row>
           <Form.Group as={Col} className="mb-3" controlId="formName">

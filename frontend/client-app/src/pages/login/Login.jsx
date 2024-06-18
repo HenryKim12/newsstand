@@ -50,7 +50,7 @@ function Login() {
   return (
     <div className='main-container'> 
       <h2>Sign in to Newsstand</h2>
-      {showPopup && <Popup handlePopup={handlePopup} message={errorMessage} />}
+      {showPopup && <Popup handlePopup={handlePopup} title="Try again" message={errorMessage} />}
       <div className='login-container'>
         <Form className='login-form-container' onSubmit={loginUser}>
           <Form.Group className="mb-3" controlId="formEmail" onChange={handleInputs}>

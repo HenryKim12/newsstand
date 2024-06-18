@@ -7,3 +7,9 @@
 .container-content {
     display: block;
 }
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

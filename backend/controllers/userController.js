@@ -3,8 +3,8 @@ const Article = require("../database/models/articleModel")
 
 const getUserArticles = async (req, res) => {
     try {
-        const user_email = req.body.email
-        const user = await User.findOne({email: user_email})
+        const user_id = req.user.id
+        const user = await User.findOne({_id: user_id})
         res.status(200).json(user.saved_articles)
     } catch (error) {
         console.log(`Error: ${error.message}`)
@@ -37,8 +37,9 @@ const getUserArticleById = async (req, res) => {
 
 const deleteUserArticle = async (req, res) => {
     try {
-        const user_email = req.body.email
-        const user = await User.find({email: user_email})
+        //check if it exists and we can delete
+        const user_id = req.user.id
+        //const user = await User.findOne({_id: user_id})
         const article_id = req.params.id
         await User.deleteOne(
             {_id: user_id},
@@ -53,16 +54,29 @@ const deleteUserArticle = async (req, res) => {
 
 const addUserArticle = async (req, res) => {
     try {
-        const user_email = req.body.email
-        const user = await User.find({email: user_email})
-        const user_id = user._id
-        const article_id = req.params.id
-        const article = Artcile.findById(article_id)
-        await User.updateOne(
+        const user_id = req.user.id
+        const article_id = req.body.id
+        const article = await Article.findById(article_id)
+
+        // check if article already saved
+        const query = {
+            _id: user_id,
+            saved_articles: {
+              $elemMatch: {
+                title: article.title
+              }
+            }
+          };
+        const existingSavedArticle = await User.findOne(query)
+        if (existingSavedArticle) {
+            return res.status(403).json({message: "Article is already in your favourites"})
+        }
+        const result = await User.updateOne(
             {_id: user_id},
             {$push: {saved_articles: article}}
         )
-        res.status(204)
+        return res.status(204).json({message: "SUCCESS"})
+        
     } catch (error) {
         console.log(`Error: ${error.message}`)
         res.status(400).json({error: error.message})

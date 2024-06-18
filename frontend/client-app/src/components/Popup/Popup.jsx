@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal"
 
-function Popup({handlePopup, message}) {
+function Popup({handlePopup, title, message}) {
     const [show, setShow] = useState(true)
 
     const handleCloseToParent = () => {
@@ -17,7 +17,7 @@ function Popup({handlePopup, message}) {
     return (
         <Modal show={show} onHide={handleCloseToParent}>
             <Modal.Header closeButton>
-                <Modal.Title>Try again</Modal.Title>
+                <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>{message}</Modal.Body>
             <Modal.Footer>
