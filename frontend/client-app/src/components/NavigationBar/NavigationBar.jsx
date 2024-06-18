@@ -64,20 +64,17 @@ function NavigationBar() {
             <Nav.Link className="nav-link" onClick={() => navigate("/sports")}>
               Sports
             </Nav.Link>
-            <Nav.Link className="nav-link" onClick={() => navigate("/travel")}>
-              Travel
-            </Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate("/technology")}>
               Technology
             </Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate("/health")}>
               Health
             </Nav.Link>
-            <Nav.Link
-              className="nav-link"
-              onClick={() => navigate("/entertainment")}
-            >
+            <Nav.Link className="nav-link" onClick={() => navigate("/entertainment")}>
               Entertainment
+            </Nav.Link>
+            <Nav.Link className="nav-link" onClick={() => navigate("/travel")}>
+              Travel
             </Nav.Link>
             {isLoggedIn && 
             <NavDropdown title="Account" id="navbarScrollingDropdown">

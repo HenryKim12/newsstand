@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./Register.css"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -47,6 +47,10 @@ function Register() {
       [formType]: value
     }))
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <div className='main-container'> 

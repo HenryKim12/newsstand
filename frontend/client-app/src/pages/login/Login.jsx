@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./Login.css"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -46,6 +46,10 @@ function Login() {
   const handlePopup = (childShow) => {
     setShowPopup(childShow)
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <div className='main-container'> 

@@ -1,0 +1,13 @@
+.goToLogin-container {
+    display: block;
+    text-align: center;
+    width: 100vh;
+}
+
+.inner-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+}

@@ -12,6 +12,7 @@ import HealthPage from "./pages/subpages/HealthPage"
 import SearchPage from "./pages/subpages/SearchPage"
 import FavouritesPage from "./pages/subpages/account/FavouritesPage"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
+import GoToLoginPage from "./pages/subpages/GoToLogin/GoToLoginPage"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path={routes.entertainment} element={<ProtectedRoute> <EntertainmentPage /> </ProtectedRoute>} />
         <Route path={routes.search} element={<ProtectedRoute> <SearchPage /> </ProtectedRoute>} />
         <Route path={routes.accountFavourites} element={<ProtectedRoute> <FavouritesPage /> </ProtectedRoute>} />
+        <Route path={routes.error} element={<GoToLoginPage />} />
       </Routes>
     </BrowserRouter>
   )
