@@ -37,15 +37,28 @@ const getUserArticleById = async (req, res) => {
 
 const deleteUserArticle = async (req, res) => {
     try {
-        //check if it exists and we can delete
         const user_id = req.user.id
-        //const user = await User.findOne({_id: user_id})
         const article_id = req.params.id
-        await User.deleteOne(
+
+        //check if it exists and we can delete
+        const query = {
+            _id: user_id,
+            saved_articles: {
+              $elemMatch: {
+                _id: article_id
+              }
+            }
+          };
+        const existingArticle = await User.findOne(query)
+        if (!existingArticle) {
+            return res.status(403).json({error: "No such article exists in favourites"})
+        }
+
+        const result = await User.updateOne(
             {_id: user_id},
             {$pull: {saved_articles: {_id: article_id}}}
         )
-        res.status(204)
+        return res.status(204).json({message: "Success"})
     } catch (error) {
         console.log(`Error: ${error.message}`)
         res.status(400).json({error: error.message})
@@ -76,7 +89,6 @@ const addUserArticle = async (req, res) => {
             {$push: {saved_articles: article}}
         )
         return res.status(204).json({message: "SUCCESS"})
-        
     } catch (error) {
         console.log(`Error: ${error.message}`)
         res.status(400).json({error: error.message})

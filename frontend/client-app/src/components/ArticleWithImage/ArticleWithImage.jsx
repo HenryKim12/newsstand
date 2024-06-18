@@ -14,6 +14,9 @@ function ArticleWithImage({article}) {
 
   return (
     <div className='article-img-container'>
+        {route.length > 1 && 
+        <HeartButton article={article} />
+        }
         <div className='container-content'>
           <h6 style={{fontWeight: "bold"}}>
               {article.title}
@@ -21,9 +24,6 @@ function ArticleWithImage({article}) {
           <p>{article.description}</p>
           <div className='buttons-container'>
             <ReadMoreButton url={article.url} />
-            {route.length > 1 && 
-            <HeartButton article={article} />
-            }
           </div>
         </div>
         <img src={article.image_url} width={400}/>

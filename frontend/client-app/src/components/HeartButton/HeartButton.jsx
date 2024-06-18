@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { FaRegHeart } from "react-icons/fa";
 import apiClient from '../../api/apiClient';
-import HeartPopUp from './HeartPopUp';
 import PopUp from "../Popup/Popup"
 
 function HeartButton({article}) {
@@ -31,7 +30,7 @@ function HeartButton({article}) {
   return (
     <div>
         {showErrorPopup && 
-        <PopUp handlePopup={handlePopup} title="Something went wrong..." message={errorMessage}/>        
+        <PopUp handlePopup={handlePopup} title="Oops..." message={errorMessage}/>        
         }
         {showSuccessPopup && 
         <PopUp handlePopup={handlePopup} title="Success" message="Successfully added to favourites!"/>  
