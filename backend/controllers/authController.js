@@ -15,6 +15,27 @@ const createUser = async (req, res) => {
 
     // TODO: ensure password is strong (6+ characters, symbols, numbers)
 
+    if (req.body.password.length < 8) {
+      return res.status(400).send("Password length too short")
+    }
+    // check if password contains a symbol
+    const symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "-", "_"]
+    let validPassword = false;
+    for (const char of req.body.password) {
+      if (symbols.includes(char)) {
+        validPassword = true;
+        break;
+      }
+    }
+    if (!validPassword) {
+      return res.status(400).send(`Password missing symbol: ${symbols.join(", ")}`)
+    }
+    // check if password contains a number
+    const hasNumber = /\d/.test(req.body.password)
+    if (!hasNumber) {
+      return res.status(400).send("Password missing number")
+    }
+
     const oldUser = await User.findOne({ email: req.body.email });
     if (oldUser) {
       return res.status(409).send("User Already Exist. Please Login");

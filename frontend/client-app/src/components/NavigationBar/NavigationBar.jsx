@@ -41,7 +41,7 @@ function NavigationBar() {
       console.log(response)
       Cookies.set("isCookieSet", false)
       checkCookies()
-      navigate(0)
+      navigate("/")
     } catch (error) {
       console.log(error)
     }    

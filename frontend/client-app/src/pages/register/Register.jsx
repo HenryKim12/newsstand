@@ -76,7 +76,7 @@ function Register() {
 
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="6+ characters" onChange={handleChange} size='lg'/>
+          <Form.Control type="password" onChange={handleChange} size='lg'/>
         </Form.Group>
 
         <Button variant="dark" type="submit" className='create-button'>
