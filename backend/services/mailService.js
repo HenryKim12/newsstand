@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const htmlContent = require("../data/mailHtml")
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,   
@@ -16,7 +17,7 @@ const sendEmail = async (to) => {
       from: `"Newsstand" <${process.env.SMTP_USER}>`, 
       to: to,                                          
       subject: "Welcome to Newsstand",                                  
-      text: "test"                                   
+      html: htmlContent                                
     });
     console.log('Email sent successfully');
   } catch (error) {
