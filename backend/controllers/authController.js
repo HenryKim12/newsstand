@@ -13,8 +13,6 @@ const createUser = async (req, res) => {
       res.status(400).send("All input is required");
     }
 
-    // TODO: ensure password is strong (6+ characters, symbols, numbers)
-
     if (req.body.password.length < 8) {
       return res.status(400).send("Password length too short")
     }

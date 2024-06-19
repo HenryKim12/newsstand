@@ -37,20 +37,24 @@ app.use((req, res, next) => {
 })
 
 // test / one-time scripts
-app.get('/removeDuplicates', async (req, res) => {
-    await mongoHelper.removeDuplicates();
-    res.send("Dupicates removed");
-  });
+// app.get('/removeDuplicates', async (req, res) => {
+//     await mongoHelper.removeDuplicates();
+//     res.send("Dupicates removed"); 
+// });
+// app.get("/truncateUsers", async (req, res) => {
+//     await mongoHelper.truncateUserCollection();
+//     res.send("Truncated user collection")
+// })
 
-app.post("/send-mail", async (req, res) => {
-    try {
-        const {to} = req.body;
-        await mailService.sendEmail(to)
-        res.status(200).json({ message: 'Email sent successfully' });
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to send email', error });
-    }
-})
+// app.post("/send-mail", async (req, res) => {
+//     try {
+//         const {to} = req.body;
+//         await mailService.sendEmail(to)
+//         res.status(200).json({ message: 'Email sent successfully' });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Failed to send email', error });
+//     }
+// })
 
 // routers
 app.use("/api/articles", articleRouter)

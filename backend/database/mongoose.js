@@ -1,5 +1,6 @@
 const Article = require("./models/articleModel")
 const Headline = require("./models/headlineModel")
+const User = require("./models/userModel")
 
 const removeDuplicates = async () => {
     try {
@@ -41,4 +42,13 @@ const deleteDuplicates = async (duplicates, isArticles) => {
     }
 }
 
-module.exports = {removeDuplicates}
+const truncateUserCollection = async () => {
+    try {
+        await User.deleteMany({});
+        console.log('User collection truncated successfully');
+    } catch (error) {
+        console.error('Error truncating collection:', error);
+    }
+}
+
+module.exports = {removeDuplicates, truncateUserCollection}
