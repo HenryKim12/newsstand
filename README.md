@@ -6,10 +6,14 @@
 Newsstand is a modern web application designed to deliver the latest news articles to users in a seamless and user-friendly manner. This application aggregates news from various reliable sources through a News API and presents it in a clean, organized format, allowing users to stay updated on current events, trending topics, and in-depth articles across various categories such as technology, sports, politics, entertainment, and more.
 
 ## Table of Contents
+  - [Demo](#demo)
   - [Key Features](#key-features)
   - [Usage](#usage)
   - [Configuration](#configuration)
   - [License](#license)
+
+## Demo
+![](https://github.com/HenryKim12/newsstand/blob/main/backend/data/newsstand-gif.gif)
 
 ## Key Features
 
