@@ -5,10 +5,10 @@ services:
     container_name: newsstand-backend
     build: .
     ports:
-      - 4000:4000
+      - ${PORT}:${PORT}
     environment:
       - ENV=${ENV}
-      - PORT=${PORT}
+      #- PORT=${PORT}
       - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
       - MONGO_DATABASE_NAME=${MONGO_DATABASE_NAME}
       - NEWS_API_KEY=${NEWS_API_KEY}
