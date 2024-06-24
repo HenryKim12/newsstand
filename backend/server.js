@@ -71,7 +71,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING, {dbName: process.env.MONGO
     .then(() => {
         // do not explicitly listen on PORT when running tests, or else PORT collision error
         if (process.env.ENV !== "tst") {
-            app.listen(process.env.PORT, () => {
+            app.listen(process.env.PORT, '0.0.0.0', () => {
                 console.log("Connected to MONGODB & listening on port", process.env.PORT)
             })
         }
