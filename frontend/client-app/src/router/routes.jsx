@@ -8,8 +8,8 @@ const routes = {
     technology: "/technology",
     health: "/health",
     entertainment: "/entertainment",
-    search: "/search/:searchQuery",
-    accountFavourites: "/account/favourites"
+    search: "/:searchQuery",
+    favourites: "/favourites"
 }
 
 export default routes

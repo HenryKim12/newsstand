@@ -21,7 +21,7 @@ function NavigationBar() {
   }
 
   const handleSearch = (e) => {
-    navigate(`/search/${searchQuery}`)
+    navigate(`/${searchQuery}`)
     setSearchQuery("");
   }
 
@@ -54,7 +54,7 @@ function NavigationBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#" className="brand">Newsstand</Navbar.Brand>
+        <Navbar.Brand className="brand">Newsstand</Navbar.Brand>
         <div class="vr"></div>
         <Navbar.Collapse id="navbarScroll" className="nav-collapse">
           <Nav className="nav" style={{ maxHeight: "100px" }} navbarScroll>
@@ -78,7 +78,7 @@ function NavigationBar() {
             </Nav.Link>
             {isLoggedIn && 
             <NavDropdown title="Account" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action7" onClick={() => navigate("/account/favourites")}>Favourites</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => navigate("/favourites")}>Favourites</NavDropdown.Item>
             </NavDropdown>}
           </Nav>
           <div className="search-buttons">

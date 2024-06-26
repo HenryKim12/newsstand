@@ -12,7 +12,7 @@ function Category({topic, list}) {
             {list.map((item) => {
                 return (
                     <li className='category-item' key={item}>
-                        <a href="" onClick={() => navigate(`/search/${item.toLowerCase()}`)}>{item}</a>
+                        <a href="" onClick={() => navigate(`/${item.toLowerCase()}`)}>{item}</a>
                     </li>
                 )
             })}

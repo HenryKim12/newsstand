@@ -79,8 +79,14 @@ const login = async (req, res) => {
       return res.status(404).json({ message: "Invalid credentials" });
     }
     const token = createSecretToken(user._id);
+
+    let backend_domain = process.env.DOMAIN;
+    if (process.env.ENV == "dev") {
+      backend_domain = "localhost"
+    }
+
     res.cookie("token", token, {
-      domain: process.env.DOMAIN, // Set your domain here  // TODO: change domain in .env to match deployed domain (aws)
+      domain: backend_domain, // Set your domain here  
       path: "/", // Cookie is accessible from all paths
       expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
       secure: true, // Cookie will only be sent over HTTPS

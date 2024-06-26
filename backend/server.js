@@ -17,8 +17,13 @@ const authenticateToken = require("./jwt/authenticateToken.js")
 const mailService = require("./services/mailService.js")
 
 const app = express()
+
+let frontend_origin = process.env.FRONTEND_URL;
+if (process.env.ENV == "dev") {
+    frontend_origin = "http://localhost:5173"
+}
 const corsOptions ={
-    origin: process.env.FRONTEND_URL, 
+    origin: frontend_origin, 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }

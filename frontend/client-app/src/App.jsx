@@ -28,7 +28,7 @@ function App() {
         <Route path={routes.health} element={<ProtectedRoute> <HealthPage /> </ProtectedRoute>} />
         <Route path={routes.entertainment} element={<ProtectedRoute> <EntertainmentPage /> </ProtectedRoute>} />
         <Route path={routes.search} element={<ProtectedRoute> <SearchPage /> </ProtectedRoute>} />
-        <Route path={routes.accountFavourites} element={<ProtectedRoute> <FavouritesPage /> </ProtectedRoute>} />
+        <Route path={routes.favourites} element={<ProtectedRoute> <FavouritesPage /> </ProtectedRoute>} />
         <Route path={routes.error} element={<GoToLoginPage />} />
       </Routes>
     </BrowserRouter>
