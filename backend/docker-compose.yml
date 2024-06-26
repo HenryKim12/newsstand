@@ -1,24 +1,26 @@
-version: '3'
+version: '3.0'
 
 services:
   app:
     container_name: newsstand-backend
     build: .
-    environment:
-      - ENV=${ENV}
-      - PORT=${PORT}
-      - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
-      - MONGO_DATABASE_NAME=${MONGO_DATABASE_NAME}
-      - NEWS_API_KEY=${NEWS_API_KEY}
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
-      - FRONTEND_URL=${FRONTEND_URL}
-      - DOMAIN=${DOMAIN}
-      - SMTP_HOST=${SMTP_HOST}
-      - SMTP_PORT=${SMTP_PORT}
-      - SMTP_USER=${SMTP_USER}
-      - SMTP_PASS=${SMTP_PASS}
+    env_file: 
+      - ../../environment/.env
+    # environment:
+    #   - ENV=${ENV}
+    #   - PORT=${PORT}
+    #   - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
+    #   - MONGO_DATABASE_NAME=${MONGO_DATABASE_NAME}
+    #   - NEWS_API_KEY=${NEWS_API_KEY}
+    #   - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    #   - FRONTEND_URL=${FRONTEND_URL}
+    #   - DOMAIN=${DOMAIN}
+    #   - SMTP_HOST=${SMTP_HOST}
+    #   - SMTP_PORT=${SMTP_PORT}
+    #   - SMTP_USER=${SMTP_USER}
+    #   - SMTP_PASS=${SMTP_PASS}
     ports:
-      - ${PORT}:${PORT}
+      - 4000:4000
     volumes:
       - .:/app
       - /app/node_modules
