@@ -54,7 +54,7 @@ const getArticles = async (isHeadlineJob) => {
                 }
             }
             if (!invalid) {
-                const title = model["title"]
+                const atitle = model["title"]
                 const source = model["source"]
                 const author = model["author"]
                 const description = model["description"]
@@ -65,12 +65,12 @@ const getArticles = async (isHeadlineJob) => {
                 if (isHeadlineJob) {
                     const lts_publish_date = mostRecentHeadline[0]["publish_date"]
                     if (lts_publish_date < new Date(publish_date)) {
-                        await Headline.create({title, source, author, description, content, url, image_url, publish_date})
+                        await Headline.create({atitle, source, author, description, content, url, image_url, publish_date})
                     }
                 } else {
-                    const existingArticle = Article.find({title: title})
-                    if (!existingArticle) {
-                        await Article.create({title, source, author, description, content, url, image_url, publish_date})
+                    const existingArticle = await Article.countDocuments({title: atitle}, {limit: 1})
+                    if (existingArticle === 0) {
+                        await Article.create({atitle, source, author, description, content, url, image_url, publish_date})
                     }
                 }
             }
