@@ -18,11 +18,10 @@ const mailService = require("./services/mailService.js")
 
 const app = express()
 const corsOptions ={
-    origin:'http://localhost:5173', 
+    origin: process.env.FRONTEND_URL, 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
-//app.use(cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json({ extended: true }));
